@@ -1,0 +1,407 @@
+@use "_variables" as *;
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin figure-bar($left) {
+    content: " ";
+    position: absolute;
+    height: 1.2rem;
+    width: 0.1rem;
+    left: $left;
+    background-color: $primary-color;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $text-color-light;
+    position: relative;
+
+    h1 {
+        font-size: 4.5rem;
+    }
+
+    &__banner {
+        width: 60vw;
+        background-color: $primary-color;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding: 0.5em;
+    }
+
+    &__image {
+        width: 20rem;
+    }
+
+    &__contacts {
+        display: grid;
+        margin: 4em;
+        grid-template-columns: 2.5em 1fr;
+        grid-template-rows: repeat(5, wem);
+        color: $text-color-dark;
+
+        span {
+            padding: 0.2em;
+            border-bottom: 0.1em solid black;
+            @include flex-center;
+            &:nth-child(odd) {
+                border-right: 0.1em solid black;
+            }
+
+            &:last-child,
+            &:nth-last-child(2) {
+                border-bottom: 0;
+            }
+        }
+    }
+
+    &__ribbon {
+        position: absolute;
+        bottom: 2rem;
+        width: 100%;
+        padding: 2rem;
+        background-color: $secondary-color;
+        opacity: 0.95;
+        color: $text-color-dark;
+        font-size: 1.8rem;
+    }
+}
+
+.professional-statement {
+    color: $text-color-silver;
+    margin-top: 2rem;
+    &__content {
+        margin: 1.2rem 2rem;
+    }
+
+    &__title {
+        position: relative;
+        width: fit-content;
+        margin: 0 2rem;
+    }
+
+    &__title::after {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 100%;
+        height: 2px;
+        border-bottom: 5px solid $text-color-silver;
+    }
+    hr {
+        color: $text-color-silver;
+    }
+}
+
+.main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(11, 80px);
+    margin: 0 20px;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.05rem;
+    background-color: $primary-color;
+    color: $text-color-light;
+    border: 0.1rem solid $primary-color;
+
+    &__icon-square {
+        position: relative;
+        @include flex-center;
+        height: 100%;
+        background-color: white;
+        padding: 0 0.7rem;
+    }
+}
+
+.main-socials {
+    grid-area: 2/1/5/2;
+    background-color: $secondary-color;
+    @include flex-center;
+    border: 0.1rem solid $primary-color;
+
+    &__wrapper {
+        width: fit-content;
+        display: grid;
+        grid-template-columns: 3rem 12.5rem;
+        gap: 1.5rem;
+    }
+}
+
+.header__education {
+    grid-area: 5/1/6/2;
+}
+
+.main__education {
+    grid-area: 6/1/12/2;
+    background-color: $secondary-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    gap: 1.4rem;
+    border: 0.1rem solid $primary-color;
+
+    &__block {
+        margin-left: 3rem;
+        position: relative;
+    }
+
+    &__block:first-child::after,
+    &__block:nth-child(2)::after {
+        content: " ";
+        position: absolute;
+        width: 25vw;
+        height: 0.1rem;
+        left: -3rem;
+        bottom: -3rem;
+        border-bottom: 0.1rem solid $primary-color;
+    }
+}
+
+.header__work-experience {
+    grid-area: 1/2/2/4;
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-bottom: 0;
+}
+
+.main__work-experience {
+    grid-area: 2/2/8/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 0.1rem solid $primary-color;
+
+    &__block {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+
+        &__title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        ul {
+            color: $text-color-silver;
+            margin-left: 1.5rem;
+        }
+    }
+}
+
+.header__technical-skills {
+    grid-area: 8/2/9/4;
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.main__technical-skills {
+    grid-area: 9/2/12/4;
+    @include flex-center;
+    border: 0.1rem solid $primary-color;
+
+    &__wrapper {
+        display: grid;
+        grid-template-columns: 50px 1fr 50px 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        width: 70%;
+        height: 80%;
+        gap: 1.4rem;
+    }
+
+    p {
+        align-self: center;
+    }
+
+    &__graph {
+        width: 100%;
+        height: 1.4rem;
+        border: 2px solid $primary-color;
+        align-self: center;
+        position: relative;
+    }
+
+    &__graph:nth-child(2):after {
+        @include figure-bar(25%);
+    }
+    &__graph:nth-child(4):after {
+        @include figure-bar(60%);
+    }
+    &__graph:nth-child(6):after {
+        @include figure-bar(30%);
+    }
+    &__graph:nth-child(8):after {
+        @include figure-bar(90%);
+    }
+    &__graph:nth-child(10):after {
+        @include figure-bar(75%);
+    }
+    &__graph:nth-child(12):after {
+        @include figure-bar(85%);
+    }
+}
+
+.icon {
+    &--small {
+        width: 1.2em;
+    }
+
+    &--medium {
+        width: 2.4em;
+    }
+
+    &--big {
+        width: 3em;
+    }
+
+    &--round {
+        background-color: white;
+        padding: 1em;
+        border-radius: 50%;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    html {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 610px) {
+    html {
+        font-size: 10px;
+    }
+
+    .header {
+        flex-direction: column;
+
+        &__banner {
+            width: 100vw;
+            flex-direction: column;
+        }
+
+        div h1 {
+            display: inline;
+        }
+
+        &__ribbon {
+            position: static;
+            text-align: center;
+        }
+
+        &__contacts {
+            justify-self: end;
+            margin: 1em;
+        }
+    }
+
+    .professional-statement {
+        font-size: 1.2em;
+
+        &__title {
+            margin: auto;
+        }
+    }
+
+    .main {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        margin: 0;
+    }
+
+    .header__socials {
+        grid-area: 7/1/8/2;
+    }
+    .main-socials {
+        grid-area: auto;
+        padding: 1em;
+    }
+
+    .header__education {
+        grid-area: 1/1/2/2;
+    }
+
+    .main__education {
+        grid-area: 2/1/2/2;
+        font-size: 1.2em;
+        gap: 3em;
+        padding: 2em 0;
+
+        &__block {
+            margin-left: 3em;
+            position: relative;
+        }
+
+        &__block:first-child::after,
+        &__block:nth-child(2)::after {
+            border: 0;
+        }
+    }
+
+    .header__work-experience {
+        grid-area: 3/1/4/2;
+        background-color: $primary-color;
+        color: $secondary-color;
+    }
+
+    .main__work-experience {
+        grid-area: 4/1/5/2;
+        font-size: 1.3em;
+        padding: 1em;
+
+        &__block {
+            width: 100%;
+            gap: 1.2em;
+            margin: 1em;
+        }
+    }
+
+    .header__technical-skills {
+        grid-area: 5/1/6/2;
+        background-color: $primary-color;
+        color: $secondary-color;
+    }
+
+    .main__technical-skills {
+        grid-area: 6/1/7/2;
+
+        &__wrapper {
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            grid-template-rows: repeat(6, 40px);
+            width: 70%;
+            height: 100%;
+            gap: 1rem;
+        }
+    }
+}
